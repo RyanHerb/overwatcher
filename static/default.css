@@ -1,0 +1,50 @@
+.table.fixed {
+    table-layout: fixed;
+}
+
+.table tr td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+table td.icon-container {
+    text-align: center;
+}
+
+.icon {
+    height: 16px;
+    width: 16px;
+}
+
+.irregular_icon {
+    height: 4px;
+}
+
+table thead td {
+    font-weight: bold;
+}
+
+.right {
+    float: right;
+}
+
+.spaced {
+    margin: 5px;
+}
+
+.fill-width {
+    width: 100%;
+}
+
+table td.ok {
+    background-color: #90D491;
+}
+
+table td.warn {
+    background-color: #F5AE67;
+}
+
+table td.err {
+    background-color: #F75252;
+}

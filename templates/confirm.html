@@ -1,0 +1,7 @@
+{%- extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <span>Are you sure you would like to delete this ?</span>
+        <div class="fill-width"><a class="btn btn-info center spaced" href="{{confirm_url}}">Yes</a><a class="btn btn-info center spaced" href="{{cancel_url}}">No</a></div>
+    </div>
+{%- endblock %}

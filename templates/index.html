@@ -1,0 +1,38 @@
+{%- extends "base.html" %}
+{% block title %} 
+    Profiles
+{% endblock %}
+{% block content %}
+    <div class="page-header">
+        <h3>Overwatcher Profiles</h3>
+    </div>
+    <div class="container">
+        <a href="/add" class="btn btn-info right" role="button">Add</a>
+        <table class="table table-hover table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th>Tag
+                    <th>Current Rank
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for profile in profiles:%}
+                <tr class="clickable-row" data-href='/profile/{{profile.id}}' >
+                    <td>{{ profile.tag }}
+                    <td>{{ profile.last_rank }}
+                    <td class="icon-container">
+			    <a href="/profile/{{profile.id}}/edit">
+                            <img title="edit" class="icon" src="{{url_for('static', filename='img/edit.png')}}"/>
+                        </a>
+                        <a href="/profile/confirm/{{profile.id}}">
+                            <img title="delete" class="icon" src="{{url_for('static', filename='img/delete.png')}}"/>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="/add" class="btn btn-info right" role="button">Add</a>
+    </div>
+{%- endblock %}
