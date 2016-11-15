@@ -8,11 +8,13 @@ from sqlalchemy.orm import joinedload
 from datetime import datetime
 
 from models import *
+from profile import profile_api
 from default import api
 
 def create_app():
     app = Flask(__name__)
 
+    app.register_blueprint(profile_api)
     app.register_blueprint(api)
 
     Bootstrap(app)
