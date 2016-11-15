@@ -41,4 +41,12 @@ class Stat(db.Model):
     rank = db.Column(db.Integer)
     stat_date = db.Column(db.Date())
 
+    def __init__(self, profile_id=None, rank=None):
+        self.profile_id = profile_id
+        self.rank = rank
+        self.stat_date = datetime.now()
+
+    def __repr__(self):
+        return '<Stat %r>' % (self.profile_id, self.rank, self.stat_date)
+
 ProfileForm = model_form(Profile, base_class=Form, db_session=db.session)

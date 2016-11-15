@@ -3,6 +3,7 @@ class Config(object):
     TESTING = False
     SQLALCHEMY_DATABASE_URI = "sqlite://"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    API_URL = 'https://api.lootbox.eu'
 
 class ProductionConfig(Config):
     SECRET_KEY = 'prod'
