@@ -39,3 +39,5 @@ class Stat(db.Model):
     profile_id = db.Column(db.Integer, db.ForeignKey('profile.id'))
     rank = db.Column(db.Integer)
     stat_date = db.Column(db.Date())
+
+ProfileForm = model_form(Profile, base_class=Form, db_session=db.session)
