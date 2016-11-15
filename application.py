@@ -22,7 +22,6 @@ def create_app():
 
 app = create_app()
 app.config.from_object('config.DevelopmentConfig')
-app.config.from_pyfile('config.cfg')
 
 migrate = Migrate(app, db)
 
