@@ -54,7 +54,7 @@ def process_form(profile=None):
     platform = request.form['platform']
     region = request.form['region']
     
-    my_profile = update_profile(tag, platform, region)
+    my_profile = update_profile(tag, platform, region, profile)
     form = ProfileForm()
     try:
         if profile is None:
