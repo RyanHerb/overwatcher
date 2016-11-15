@@ -1,0 +1,16 @@
+{% from "formhelper.html" import render_field %}
+{%- extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <form method=post action="{{action}}">
+            <dl>
+                {{ form.hidden_tag()  }}
+                {{ render_field(form.tag, with_label=True)  }}
+                {{ render_field(form.platform, with_label=True)  }}
+                {{ render_field(form.region, with_label=True)  }}
+            </dl>
+            <p><input class="btn btn-info" role="button" type=submit value="Save">
+        </form>
+    </div>
+{% endblock %}

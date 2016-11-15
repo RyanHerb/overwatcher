@@ -1,0 +1,54 @@
+{%- extends "base.html" %}
+{% block title %} 
+    Server format
+{% endblock %}
+{% block content %}
+    <div class="page-header">
+        <h3>Report Format</h3>
+    </div>
+    <div class="container">
+        <a href="/add_format" class="btn btn-info right" role="button">Add</a>
+        <table class="table table-hover table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th>FieldName
+                    <th>Description
+                    <th>Data Type
+                    <th>Comparator
+                    <th>Warning Threshold
+                    <th>Error Threshold
+                    <th>Order
+                    <th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for format in formats:%}
+                <tr class="clickable-row" data-href='/format/{{format.id}}' >
+                    <td>{{ format.fieldname }}
+                    <td class="ellipsis">{{ format.description }}
+                    <td>{{ format.data_type }}
+                    <td>{{ format.comparator }}
+                    <td>{{ format.warning_threshold }}
+                    <td>{{ format.error_threshold }}
+		    <td>
+			<a href="{{url_for('format_api.decrease_order', id=format.id)}}">
+			    <img title="decrease" class="icon irregular_icon" src="{{url_for('static', filename='img/minus.png')}}"/>
+			</a>
+			{{ format.order }}
+			<a href="{{url_for('format_api.increase_order', id=format.id)}}">
+			    <img title="increase" class="icon" src="{{url_for('static', filename='img/plus.png')}}"/>
+			</a>
+                    <td class="icon-container">
+                        <a href="{{url_for('format_api.edit_format', id=format.id)}}">
+                            <img title="edit" class="icon" src="{{url_for('static', filename='img/edit.png')}}"/>
+                        </a>
+                        <a href="{{url_for('format_api.confirm_format', id=format.id)}}">
+                            <img title="delete" class="icon" src="{{url_for('static', filename='img/delete.png')}}"/>
+                        </a>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="/add_format" class="btn btn-info right" role="button">Add</a>
+    </div>
+{%- endblock %}
