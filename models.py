@@ -26,9 +26,10 @@ class Profile(db.Model):
     stats = db.relationship('Stat', backref='profile',
             cascade='all, delete-orphan', lazy='dynamic')
 
-    def __init__(self, tag=None, ):
-        self.name = name
-        self.description = description
+    def __init__(self, tag=None, platform=None, region=None):
+        self.tag = tag
+        self.platform = platform
+        self.region = region
 
     def __repr__(self):
         return '<Profile %r>' % (self.tag)
