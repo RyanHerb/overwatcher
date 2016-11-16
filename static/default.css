@@ -12,9 +12,23 @@ table td.icon-container {
     text-align: center;
 }
 
+table .center {
+    text-align: center;
+    vertical-align: middle;
+}
+
 .icon {
     height: 16px;
     width: 16px;
+}
+
+.small {
+    height: 64px;
+//    width: 64px;
+}
+
+.absolute {
+    position: absolute;
 }
 
 .irregular_icon {
