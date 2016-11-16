@@ -1,0 +1,82 @@
+{%- extends "base.html" %}
+{% block title %} 
+    {{ profile.tag }}
+{% endblock %}
+{% block content %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <div class="page-header">
+	<h3>{{ profile.tag }}</h3>
+    </div>
+    <div class="container">
+        <div id="chart_div"></div>
+	<a href="/profile/{{profile.id}}/ranks/update" class="btn btn-info right" role="button">Update</a>
+        <table class="table table-hover table-condensed table-striped">
+            <thead>
+                <tr>
+		    <th class="center">Avatar
+		    <th class="center">Level
+		    <th class="center">Portrait
+		    <th class="center">Star
+                    <th class="center">Rank
+		    <th class="center">Rank Image
+                    <th class="center">Date
+                </tr>
+            </thead>
+            <tbody>
+            {% for rank in ranks:%}
+                <tr>
+		    <td class="center"><img class="small" src="{{ rank.avatar }}" />
+                    <td class="center">{{ rank.level }}
+		    <td class="center"><img class="small" src="{{ rank.portrait }}" />
+                    <td class="center"><img class="small" src="{{ rank.star }}" />
+                    <td class="center">{{ rank.rank }}
+                    <td class="center"><img class="small" src="{{ rank.rank_img }}" />
+                    <td class="center">{{ rank.rank_date }}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+	google.charts.load('current', {packages: ['corechart', 'line']});
+	google.charts.setOnLoadCallback(drawBasic);
+
+	function drawBasic() {
+
+	      var data = new google.visualization.DataTable();
+	      data.addColumn('datetime', 'Date');
+	      data.addColumn('number', 'Rank');
+
+		{% autoescape false %}
+	      ranks = JSON.parse('{{ formatted_ranks }}');
+		{% endautoescape %}
+
+	      rank_data = ranks['data']
+	      for (var i=0; i < rank_data.length; i++) {
+		      evalStr = 'new ' + rank_data[i][0];
+		      rank_data[i][0] = eval(evalStr);
+	      } 
+	      console.log(ranks['data']);
+	      data.addRows(
+	          ranks['data']
+	      );
+
+	      var options = {
+		hAxis: {
+		  title: 'Time'
+		},
+		vAxis: {
+		viewWindow: {
+			min: 0,
+			max: 5000
+		},
+		  title: 'Rank'
+		}
+	      };
+
+	      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+	      chart.draw(data, options);
+	    }
+    </script>
+{%- endblock %}
