@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-from models import Profile, Stat
+from models import Profile, Rank
 
 api = Blueprint('api', __name__)
 
